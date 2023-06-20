@@ -1,0 +1,146 @@
+.app {
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  flex-direction: column;
+  gap: 8px;
+  height: 100vh;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  background: url(./Image\ \(4\).jpg)no-repeat center center fixed;
+  background-size: cover;
+}
+.app1 {
+  text-align: center;
+  font-size: large;
+  font-family: 'Orbitron', sans-serif;
+  color: #f1f2f2;
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  gap: 8px;
+  height: 100vh;
+  background: url(./Image\ \(1\).jpg)no-repeat center center fixed;
+  background-size: cover;
+}
+
+:root{  
+  --color-bg: #1f1f38;
+  --color-bg-variant: #383848;
+  --color-primary: #252839;
+  --color-primary-variant: rgb(255, 255, 255);
+  --color-white: #fff;
+  --color-light: rgba(255, 255, 255, 0.6);
+
+  --container-width-lg: 75%;
+  --container-width-md: 86%;
+  --container-width-sm: 90%;
+
+  --transition: all 400ms ease; 
+}
+
+input[type="text"],
+input[type="password"] {
+  height: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+input[type="submit"]:hover {
+  background: var(--color-bg-variant);
+  transition: var(--transition);
+  cursor: alias;
+
+}
+
+input[type="submit"]{
+  background: var(--color-bg);
+  padding: 0.5rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  
+}
+
+
+form{
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 3rem;
+  width: 70%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  background-color: var(--color-primary);
+  margin: 0;
+}
+
+input{
+  width: 80%;
+  padding: 10%;
+  border-radius: 0.9rem;
+  background: var(--color-bg-variant) ;
+  border: 3px solid var(--color-primary-variant);
+  color: var(--color-white);
+  margin: 0;
+}
+
+  
+
+
+.list-container {
+  display: flex;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.title {
+  font-size: 25px;
+  margin-bottom: 22px;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px;
+  text-align: center;
+    font-size: large;
+    font-family: 'Orbitron', sans-serif;
+    color: #f1f2f2;
+}
+
+
+.userlogin {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+}
+.userlogin a{
+  background: transparent;
+  border-radius: 100%;
+  display: flex;
+  padding: 1rem;
+  color: var(--color-light);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.userlogin a:hover{
+  background: var(--color-bg-variant);
+  transition: 400ms ease;
+}
+
+.userlogin a.active{
+  background: var(--color-primary);
+  color: var(--color-bg);
+}

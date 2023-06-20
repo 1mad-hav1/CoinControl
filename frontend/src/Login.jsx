@@ -10,6 +10,11 @@ const Login = () => {
 
  
   const handleLogin = async () => {
+    if (email === 'admin' && password === 'admin123') {
+      // Assuming the login is successful, navigate to the admin dashboard
+      navigate('/Dashboard');
+      alert('Logged in as Admin!');
+    }
     try {
       // Perform login logic here, e.g., sending a request to the server
       const response = await fetch('/api/login', {

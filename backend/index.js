@@ -49,7 +49,7 @@ app.post('/api/register', (req, res) => {
   const { name,userName,dob,place, age, email, education, phoneNumber, password } = req.body;
 
   // Check if the user with the same name already exists in the database
-  User.findOne({ name: name })
+  User.findOne({ email: email })
     .then((existingUser) => {
       if (existingUser) {
         // User with the same name already exists
@@ -137,7 +137,7 @@ app.post('/api/expenses', async (req, res) => {
       const { username } = decodedToken;
 
       // Find the user in the database by username
-      User.findOne({ name: username })
+      User.findOne({ email: username })
         .then((user) => {
           if (!user) {
             return res.status(404).json({ message: 'User not found' });

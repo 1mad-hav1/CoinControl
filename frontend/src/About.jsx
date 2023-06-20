@@ -3,24 +3,24 @@ import { IconButton,Button, Table, TableBody, TableCell, TableContainer, TableHe
 import LogoutIcon from '@mui/icons-material/Logout';
 import './Aboutstyle.css';  
 import { Link } from 'react-router-dom';
-
+import './Bar1.css'
 const About=()=> {
     return (
-        <div>
+        <div className='Bar1'>
           <div className='p2'>
-        <h1 className='p2'style={{fontSize: "25px"  }}>Expensify</h1>
+        <h1 className='p2'style={{fontSize: "25px"  }}>Coin Control</h1>
         </div>
         <div style={{paddingRight:'1300px'}}>
         <IconButton  edge='start' size='large' aria-label="PersonIcon" sx={{ mr: 2 }} >
                 <Link to={'/'}><LogoutIcon style={{ color: 'white' }} /></Link></IconButton>
-                </div>    
-      <h2 className='p7' >Overview</h2>
+        </div>    
+      <h2 className='p9' >Overview</h2>
      
       <p className='p2' >This website aims to provide information about Financial services and serve as a platform for users to interact with our AI Expense and Income Tracker.<p></p>Discover the power and convenience of our website, designed to simplify your experience with our brand.</p>
       <p className='p2' >At our website, we strive to deliver a seamless online experience to our users.Feel free to explore the various sections and features of the website to learn more about what we offer.</p>
       <br />
       <div className="collaborators">
-        <h2 className='p7' >Our Collaborators</h2>
+        <h2 className='p9' >Our Collaborators</h2>
         <div className="collaborator">
         <img className='collaboratorimg' src="/Karthi.jpg" alt="Collaborator 1" />
           <p className='p2'>Karthik Dileep</p>
@@ -33,10 +33,10 @@ const About=()=> {
         </div>
         <div className="collaborator">
         <img className='collaboratorimg' src="/jaisappi.jpg" alt="Collaborator 1" />
-          <p className='p2'>Jaisappi Kaliyar</p>
+          <p className='p2'>Austle Jaison</p>
           <div className="collaborator">
         <img className='collaboratorimg' src="/sui.jpg" alt="Collaborator 1" />
-          <p className='p2'>Steve Abraham</p>
+          <p className='p2'>Steve Abraham Wilson</p>
         </div>
       </div>
     </div>

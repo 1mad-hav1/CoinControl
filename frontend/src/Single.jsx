@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TextField, Typography, Button } from '@mui/material';
@@ -7,7 +6,6 @@ import './Single.css';
 
 const Single = () => {
   const [income, setIncome] = useState('');
-  const [expense, setExpense] = useState('');
   const [username, setUsername] = useState('');
   const navigate = useNavigate();
 
@@ -42,7 +40,6 @@ const Single = () => {
     const expenseData = {
       username, // Replace with the actual username or fetch it from your authentication system
       income: parseFloat(income),
-      expense: parseFloat(expense)
     };
     // Send a POST request to the server to add the expense
     axios
@@ -65,10 +62,8 @@ const Single = () => {
   };
 
   return (
+    <div className="backgroundpic">
     <div className="login-container">
-      <div className="video-background">
-        <video src="/Videos/star.mp4.mp4" autoPlay loop muted></video>
-      </div>
       <box>
         <h1>Add Details</h1>
 
@@ -89,27 +84,18 @@ const Single = () => {
             }} value={income} onChange={e => setIncome(e.target.value)}></TextField>
         <br />
         <br />
-        <h4>Enter the monthly expense </h4>
-        <TextField  variant="filled"
-            label="Expense"
-            sx={{
-              width: '100%',
-              color: '#FFFFFF',
-              '& .MuiInputLabel-root': {
-                color: '#FFFFFF',
-              },
-              '& .MuiFilledInput-input': {
-                color: '#FFFFFF',
-              },
-            }} value={expense} onChange={e => setExpense(e.target.value)}></TextField>
-        <br />
-        <br />
+      
 
         <br />
-        <Button variant="text" color="warning" onClick={handleAddClick}>
-          <Link style={{ textDecoration: 'none', color: 'white' }}>ADD</Link>
+        <Button variant="outlined" color="warning" onClick={handleAddClick}>
+          <Link style={{ textDecoration: 'none', color: 'red' }}>ADD</Link>
+        </Button>
+
+        <Button variant="outlined" color='primary'>
+          <Link to='/Expense'>Expense</Link>
         </Button>
       </box>
+    </div>
     </div>
   );
 };

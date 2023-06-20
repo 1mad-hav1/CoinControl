@@ -31,10 +31,16 @@ font-family: 'Cinzel', serif;
   font-family: 'Orbitron', sans-serif;  
   color: #f1f2f2;
 }
+.p9{
+  text-align: center;
+  font-size: 25px;
+  font-family: 'Orbitron', sans-serif;  
+  color: #f1f2f2;
+}
 .p7{
     text-align: center;
     font-family: 'Orbitron', sans-serif;
-    color: #f1f2f2;
+    color: #ffffff;
     font-size: medium;
 }
 .p8{
@@ -64,4 +70,17 @@ font-family: 'Cinzel', serif;
     font-family: 'Cinzel', serif;
     color: #f1f2f2;
 }
+.p10{
+  text-align: center;
+  font-size: large;
+  font-family: 'Cinzel', serif;
+  color: #000000;
+}
 
+.p11{
+  text-align: center;
+  font-size: large;
+  font-family: 'Cinzel', serif;
+  color: #000000;
+  align-items: center;
+}

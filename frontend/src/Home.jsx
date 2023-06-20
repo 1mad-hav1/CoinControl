@@ -1,11 +1,13 @@
-import { TableBody } from '@mui/material';
+import { TableBody, TextField } from '@mui/material';
 import React, { useState, useEffect } from 'react';
-import { Button, Table, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { IconButton ,Button, Table, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import LogoutIcon from '@mui/icons-material/Logout';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import './home.css';
 import { Link } from 'react-router-dom';
-import Navbar from './Navbar';
 import axios from 'axios';
-
+import './styles.css'
 const Home = () => {
   const [expenses, setExpenses] = useState([]);
   const [editingExpenseId, setEditingExpenseId] = useState('');
@@ -17,7 +19,12 @@ const Home = () => {
 
   const getTotal = () => {
     let total = 0;
-    expenses?.forEach(e => total += e.expense);
+    expenses?.forEach(e => {
+      if(e.expense==null){total+=e.income}
+      else if(e.income==null){total-=e.expense}
+      else{  total =total +(e.income-e.expense) }
+      
+    })
     return total;
   };
   const total = getTotal();
@@ -60,7 +67,7 @@ const Home = () => {
           income: 0,
           expense: 0
         });
-        fetchExpenses(); // Refresh expenses data after update
+        fetchExpenses(); 
       })
       .catch(error => {
         console.error('Error updating expense:', error);
@@ -81,7 +88,7 @@ const Home = () => {
         setExpenses(prevExpenses =>
           prevExpenses.filter(expense => expense._id !== expenseId)
         );
-        window.location.reload(); // Refresh the page
+        window.location.reload(); 
       })
       .catch(error => {
         console.error('Error deleting expense:', error);
@@ -95,52 +102,90 @@ const Home = () => {
       income: 0,
       expense: 0
     });
-    window.location.reload(); // Refresh the page
+    window.location.reload(); 
   };
 
   return (
-    <div>
-      <Navbar />
-      <div className="home-container">
-        <div className="video-background">
-          <video src="/Videos/p.mp4" autoPlay loop muted></video>
-        </div>
-        <div className="content">
-          <h1 className="heading">Welcome To Home Page</h1>
-        <img src="/picture/logos.png" alt="Xtrack" width="60" height="60"></img>
-          <h2 className="">Total Expenses : {total}</h2>
-          <div className="table-container">
+ <div className='app1'>
+  <div style={{paddingRight:'1350px'}}>
+  <p style={{color: "white"}}>Profile<IconButton  edge='start' size='large' aria-label="AccountBoxicon" sx={{ mr: 2 }} >
+         <Link to={'/profilepage'}><AccountBoxIcon style={{ color: 'white' }} /></Link>
+       </IconButton> </p>
+       <section>
+      <IconButton style={{ paddingLeft: '1300px' }} edge='start' size='large' aria-label="PersonIcon" sx={{ mr: 2 }}>
+      <Link to={'/'}><LogoutIcon style={{ color: 'white' }} /></Link></IconButton>
+      </section>
+       </div>
+        <div className>
+          <h1 className="p8">Coin Control</h1>
+          <br />
+          <h2 className="p9">Total Profit : {total}</h2>
+          <div className="">
+            <h1 className="p8">Incomes</h1>
+            <TableContainer >
+              <Table style={{ color: 'black', backgroundColor:'white'}}>
+                <TableHead  >
+                  <TableRow >
+                    <TableCell style={{color: "black", backgroundColor: "white", fontFamily: "'Orbitron', sans-serif", fontSize: "20px "}}>Name</TableCell>
+                    <TableCell style={{color: "black", backgroundColor: "white", fontFamily: "'Orbitron', sans-serif", fontSize: "20px"}}>Income</TableCell>
+                    <TableCell style={{color: "black", backgroundColor: "white", fontFamily: "'Orbitron', sans-serif", fontSize: "20px"}}>Edit-Income</TableCell>
+                    <TableCell style={{color: "black", backgroundColor: "white", fontFamily: "'Orbitron', sans-serif", fontSize: "20px" }}>Delete-Income</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody >
+                  {expenses.map((expense) => (
+                    
+                    <TableRow key={expense._id}>
+                      {expense.income != null ? (<><TableCell  style={{ color: "black"}}>{expense.username}</TableCell>
+                      <TableCell  style={{ color: "black"}}>{expense.income}</TableCell>
+                      <TableCell>
+                        {editingExpenseId === expense._id ? (
+                          <form onSubmit={handleUpdateExpense}>
+                          <TextField className='p2'
+                            type="number"
+                            name="income"
+                            value={editFormData.income}
+                            onChange={handleEditFormChange}
+                          />
+                          <Button type="submit" variant="contained" color="success">Save</Button>
+                          <Button variant="contained" color="secondary" onClick={handleSaveClick}>Cancel</Button>
+                        </form>
+                        ) : (
+                          <>
+                          
+                            <Button variant="contained" color="error" >Edit</Button>
+                          </>
+                        )}
+                      </TableCell>
+                      <TableCell>
+                      <IconButton edge='start' className='p7' size='large' aria-label="DeleteIcon" sx={{ mr: 2 }}onClick={() => handleDeleteClick(expense)}>Delete<DeleteIcon style={{ color: 'black' }} /></IconButton>
+
+                      </TableCell></>): <></>}
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <br/>
+            <h1  className="p8">Expenses</h1>
             <TableContainer>
-              <Table>
+              <Table className='p11' style={{ color: 'black', backgroundColor:'white'}} >
                 <TableHead>
                   <TableRow>
-                    <TableCell style={{ color: "white", fontFamily: "cursive", fontSize: "30px", paddingLeft: "20px" }}>NAME</TableCell>
-                    <TableCell style={{ color: "white", fontFamily: "cursive", fontSize: "30px", paddingLeft: "20px" }}>INCOME</TableCell>
-                    <TableCell style={{ color: "white", fontFamily: "cursive", fontSize: "30px", paddingLeft: "20px" }}>EXPENSES</TableCell>
-                    <TableCell style={{ color: "white", fontFamily: "cursive", fontSize: "30px", paddingLeft: "20px" }}>ACTIONS</TableCell>
+                  <TableCell className='p9'style={{color: "black", backgroundColor: "white", fontFamily: "'Orbitron', sans-serif", fontSize: "20px, "}}>Name</TableCell>
+                    <TableCell style={{color: "black", backgroundColor: "white", fontFamily: "'Orbitron', sans-serif", fontSize: "20px, "}}>Expenses</TableCell>
+                    <TableCell style={{color: "black", backgroundColor: "white", fontFamily: "'Orbitron', sans-serif", fontSize: "20px, "}}>Edit-Expense</TableCell>
+                    <TableCell style={{color: "black", backgroundColor: "white", fontFamily: "'Orbitron', sans-serif", fontSize: "20px, "}}>Delete-Expense</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {expenses.map((expense) => (
                     <TableRow key={expense._id}>
-                      <TableCell  style={{ color: "white"}}>{expense.username}</TableCell>
-                      <TableCell  style={{ color: "white"}}>{expense.income}</TableCell>
-                      <TableCell  style={{ color: "white"}}>{expense.expense}</TableCell>
+                      {expense.expense != null ? (<><TableCell  style={{ color: "black"}}>{expense.username}</TableCell>
+                      <TableCell  style={{ color: "black"}}>{expense.expense}</TableCell>
                       <TableCell>
                         {editingExpenseId === expense._id ? (
                           <form onSubmit={handleUpdateExpense}>
-                            <input
-                              type="text"
-                              name="username"
-                              value={editFormData.username}
-                              onChange={handleEditFormChange}
-                            />
-                            <input
-                              type="number"
-                              name="income"
-                              value={editFormData.income}
-                              onChange={handleEditFormChange}
-                            />
                             <input
                               type="number"
                               name="expense"
@@ -153,10 +198,12 @@ const Home = () => {
                         ) : (
                           <>
                             <Button variant="contained" color="error" onClick={() => handleEditExpense(expense._id)}>Edit</Button>
-                            <Button variant="contained" color="success" onClick={() => handleDeleteClick(expense)}>Delete</Button>
+                            
                           </>
                         )}
                       </TableCell>
+                      <IconButton edge='start' className='p7' size='large' aria-label="DeleteIcon" sx={{ mr: 2 }}onClick={() => handleDeleteClick(expense)}>Delete<DeleteIcon style={{ color: 'black' }} /></IconButton>
+                      </>): <></>}
                     </TableRow>
                   ))}
                 </TableBody>
@@ -168,7 +215,6 @@ const Home = () => {
           </Button>
         </div>
       </div>
-    </div>
   );
 };
 

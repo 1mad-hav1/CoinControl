@@ -2,16 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-}
-
-.video-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  background-image: url(Image\ \(3\).jpg);
   height: 100%;
-  z-index: -1;
+  background-size: cover;
 }
 
 .login-content {
@@ -20,9 +13,20 @@
 }
 
 .login-title {
-  color: #ebe4e4;
+  color:color(from color srgb r g b);
   margin-bottom: 2rem;
 }
+
+  h1 {
+    font-size: 50px;
+    font-family: 'Roboto';
+    color: #fffefe;
+  }
+  h2{
+    font-size: 30px;
+    font-family: 'Railway';
+  }
+
 
 
 .MuiFilledInput-root {

@@ -83,8 +83,8 @@ const Dashboard = () => {
         console.error('Error unblocking user:', error);
       });
   };
-  return (<>
-  <>
+  return (
+  <><>
     <div>
       <div className="home-container">
         <div className="content">
@@ -96,7 +96,7 @@ const Dashboard = () => {
                  </div>
           <div >
           <TableContainer >
-                    <Table style={{ color: "black", backgroundColor: ""}}>  
+                    <Table style={{ color: "black", backgroundColor: "white"}}>  
                         <TableHead className='white'>
                             <TableRow >
                                 <TableCell style={{ color: "black", backgroundColor: "white", fontFamily: "'Orbitron', sans-serif", fontSize: "15px"  }} >E-mail</TableCell>
@@ -107,20 +107,20 @@ const Dashboard = () => {
                         <TableBody>
                       {users.map((user) => (
                     <TableRow key={user._id}>
-                      <TableCell style={{ color: 'white' }}>{user._id}</TableCell>
+                      <TableCell style={{ color: 'black' }}>{user._id}</TableCell>
                       <TableCell>
                           {user.isBlocked ? (
                             <IconButton edge='start' className='p7' size='large' aria-label="RemoveCircleOutlineIcon" sx={{ mr: 2 }}onClick={() => handleUnBlockClick(user._id)}>
-                            UnBlock<RemoveCircleOutlineIcon style={{ color: 'white' }} /></IconButton>
+                            UnBlock<RemoveCircleOutlineIcon style={{ color: 'black' }} /></IconButton>
                           ) : (
                            <> 
                             <IconButton edge='start' className='p7' size='large' aria-label="BlockIcon" sx={{ mr: 2 }} onClick={() => handleBlockClick(user._id)}>
-                              Block<BlockIcon style={{ color: 'white' }} /></IconButton>
+                              Block<BlockIcon style={{ color: 'black' }} /></IconButton>
                               </>
                           )}
                           </TableCell>
                           <TableCell >
-                          <IconButton edge='start' className='p7' size='large' aria-label="DeleteIcon" sx={{ mr: 2 }} onClick={() => handleDeleteClick(user)} >Delete<DeleteIcon style={{ color: 'white' }} /></IconButton>
+                          <IconButton edge='start' className='p7' size='large' aria-label="DeleteIcon" sx={{ mr: 2 }} onClick={() => handleDeleteClick(user)} >Delete<DeleteIcon style={{ color: 'black' }} /></IconButton>
                       </TableCell>
                     </TableRow>
                   ))}

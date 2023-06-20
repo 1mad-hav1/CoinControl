@@ -1,20 +1,36 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box,IconButton, Button, TextField, Typography } from '@mui/material';
+import LogoutIcon from '@mui/icons-material/Logout';
 import './Login.css';
-
 const Login = () => {
-  const [email, setMail] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const [field1, setField1] = useState('');
+  const [field2, setField2] = useState('');
+  
+  
+const EmailChange = (e) => {
+  setField1(e.target.value);
+  setEmail(e.target.value);
+};
 
- 
-  const handleLogin = async () => {
-    if (email === 'admin' && password === 'admin123') {
-      // Assuming the login is successful, navigate to the admin dashboard
-      navigate('/Dashboard');
-      alert('Logged in as Admin!');
-    }
+const Pass1Change = (event) => {
+  setField2(event.target.value);
+  setPassword(event.target.value);
+};
+    const handleLogin = async () => {
+    if (field1.trim() === '' || field2.trim() === '') {
+      alert('Please fill in all required fields.');
+    } 
+    else {
+      if (email === 'Coincontrol' && password === 'saycheese') {
+        // Assuming the login is successful, navigate to the admin dashboard
+        navigate('/Dashboard');
+        alert('Logged in as Admin!');
+      }
+      else{
     try {
       // Perform login logic here, e.g., sending a request to the server
       const response = await fetch('/api/login', {
@@ -36,6 +52,7 @@ const Login = () => {
         // Set the token in local storage
         localStorage.setItem('token', token);
         // Assuming the login is successful, navigate to the home page
+        alert("Signed in successfully");
         navigate('/home');
       } else {
         const data = await response.json();
@@ -50,93 +67,49 @@ const Login = () => {
       console.error('Error occurred during login:', error);
     }
   };
+}
+}
 
   return (
-    <div className="login-container">
-      <div className="video-background">
-        <video src="/Videos/p.mp4" autoPlay loop muted></video>
-      </div>
-
-      <div className="login-content">
-        <h1 className="login-title">Welcome to XTrack</h1>
-        <img src="/picture/logos.png" alt="Xtrack" width="60" height="60"></img>
-        <Box
-          border={1}
-          borderColor="secondary.main"
-          borderRadius={10}
-          padding={8}
-          sx={{
-            backgroundColor: 'transparent',
-            color: '#333333',
-            maxWidth: '400px',
-            margin: '0 auto',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-            borderStyle: 'none',
-          }}
-        >
-          <h2 style={{ color: '#FFFFFF' }}>Login</h2>
-          <TextField
-            variant="filled"
-            label="E-mail"
-            sx={{
-              width: '100%',
-              color: '#FFFFFF',
-              '& .MuiInputLabel-root': {
-                color: '#FFFFFF',
-              },
-              '& .MuiFilledInput-input': {
-                color: '#FFFFFF',
-              },
+    <>
+      <div className="login-container">
+        <div>
+          <h1>Welcome to CoinControl</h1>
+          <Box border={1} borderColor="#808080" borderRadius={5} padding={8} sx={{ backgroundColor: 'rgba(128, 128, 128, 1)', color: '#000000' }} style={{ width: '350px' }}>
+            <h2 style={{ color: '#FFFFFF' }}>Login</h2>
+            <TextField
+              variant="filled" label="E-mail" sx={{
+                width: '100%', color: '#FFFFFF', '& label': { color: 'rgba(255, 255, 255, 0.8)', }
+              }} value={email} onChange={EmailChange} required />
+            <br />
+            <br />
+            <TextField variant="filled" type="password" label="Password" sx={{
+              width: '100%', color: '#FFFFFF', '& label': { color: 'rgba(255, 255, 255, 0.8)', }
             }}
-            value={email}
-            onChange={(e) => setMail(e.target.value)}
-          />
-          <br />
-          <br />
-          <TextField
-            variant="filled"
-            type="password"
-            label="Password"
-            sx={{
-              width: '100%',
-              color: '#FFFFFF',
-              '& .MuiInputLabel-root': {
-                color: '#FFFFFF',
-              },
-              '& .MuiFilledInput-input': {
-                color: '#FFFFFF',
-              },
-            }}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <br />
-          <br />
-          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 4 }}>
-            <Button id="bt" variant="contained" color="success" onClick={handleLogin}>
-              Login
-            </Button>
-            
-          </div>
-          <br />
-          
-          <div style={{ textAlign: 'left' }}>
-            <Typography sx={{ color: '#FFFFFF' }}>
-              Don't have an account?
-              <Link to="/sign" style={{ color: 'red' }}>
-                Sign Up
-              </Link>
-            </Typography>
-            <Typography sx={{ color: '#FFFFFF' }}>
-              Are you an admin?
-              <Link to="/adminlogin" style={{ color: 'red' }}>
+              value={password} onChange={Pass1Change} required />
+            <br />
+            <br />
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 4 }}>
+              <Button id="bt" variant="contained" color="success" onClick={handleLogin}>
                 Login
-              </Link>
-            </Typography>
-          </div>
-        </Box>
-      </div>
-    </div>
+              </Button>
+
+            </div>
+            <br />
+
+            <div style={{ textAlign: 'left' }}>
+              <Typography sx={{ color: '#00008B' }}>
+                Don't have an account?
+                <Link to="/sign" style={{ color: 'darkblue' }}>
+                  Sign Up
+                </Link>
+              </Typography>
+            </div>
+            <br /><br />
+            <Typography style={{ marginRight: '1000px', color: 'red' }}>*required</Typography>
+          </Box>
+        </div>
+      </div></>
   );
 };
 

@@ -1,7 +1,7 @@
 // Navbar.jsx
 import React from 'react';
 import { useState } from 'react';
-import { AppBar, Button, Toolbar , MenuItem, Select, InputLabel} from '@mui/material';
+import { AppBar, Button, Toolbar , MenuItem, Select} from '@mui/material';
 import { Link } from 'react-router-dom';
 const Navbar = () => {
   const [transactionType, setTransactionType] = useState('');
@@ -26,7 +26,7 @@ const Navbar = () => {
 
 
 
-        <Button variant='text' color='warning' id='bt'> <Link to="/profilepage" style={{ color: 'red' }}>PROFILE</Link></Button>
+        
        
         <Button variant="contained" color="primary" onClick={handleButtonClick}>
         Transaction

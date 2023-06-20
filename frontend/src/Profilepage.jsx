@@ -1,9 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Typography, AppBar, Box, Toolbar } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { Avatar, Typography, Grid, Paper, TextField,IconButton} from '@mui/material';
+import { styled } from '@mui/system';
+import { Edit as EditIcon } from '@mui/icons-material';
+import HomeIcon from '@mui/icons-material/Home';
+import LogoutIcon from '@mui/icons-material/Logout';
 import './Single.css';
 import './Profilepage.css';
+
+
+const ProfilePaper = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(4),
+  margin: theme.spacing(2),
+}));
+
+const ProfileAvatar = styled(Avatar)(({ theme }) => ({
+  width: theme.spacing(20),
+  height: theme.spacing(20),
+}));
 
 const Profilepage = () => {
   const [user, setUser] = useState({
@@ -72,7 +86,7 @@ const Profilepage = () => {
       }
       // Assuming the update was successful, you can handle the success scenario here
       console.log('User profile updated successfully');
-      navigate('/Home');
+      navigate('/profilepage');
     } catch (error) {
       console.error(error);
     }
@@ -86,184 +100,201 @@ const Profilepage = () => {
   };
 
   return (
-    <div>
-      <div className="video-background">
-        <video src="/Videos/p.mp4" autoPlay loop muted></video>
-      </div>
-      <Box sx={{ flexGrow: 2 }}>
-        <AppBar position="static" style={{ backgroundColor: 'black' }}>
-          <Toolbar>
-            <Typography variant="h4" component="div" sx={{ flexShrink: 2 }}>
-              Settings
-            </Typography>
-            <Button variant="contained" color="secondary">
-              <Link to={'/Home'} style={{ textDecoration: 'none', color: 'white' }}>
-                HOME
-              </Link>
-            </Button>
-            <Button variant="contained" color="primary">
-              <Link to={'/'} style={{ textDecoration: 'none', color: 'white' }}>
-                LOGOUT
-              </Link>
-            </Button>
-          </Toolbar>
-        </AppBar>
-      </Box>
+    <div className='Profilepage'>
 
-      <Typography variant="h4" color="white">
-        <b>Profile</b>
-      </Typography>
+              <IconButton><Link to={"/home"}><HomeIcon fontSize="large" color="action" />
+              </ Link>
+              </IconButton>
 
-      <ul>
-        <li>
-          <TextField
-           sx={{
-            width: '100%',
-            '& .MuiInputLabel-root': {
-              color: '#FFFFFF',
-            },
-            '& .MuiInputBase-input': {
-              color: 'white',
-            },
-          }}
-          label="Name:"
-          name="name"
-          value={user.name}
-          readOnly
-        />
-        </li>
-        <br />
-        <li>
-          <TextField
-            sx={{
-              width: '100%',
-              '& .MuiInputLabel-root': {
-                color: '#FFFFFF',
-              },
-              '& .MuiInputBase-input': {
-                color: 'white',
-              },
-            }}
-            label="Place:"
-            name="place"
-            value={user.place}
-            onChange={handleTextFieldChange}
-          />
-        </li>
-        <br />
-        <li>
-          <TextField
-            sx={{
-              width: '100%',
-              '& .MuiInputLabel-root': {
-                color: '#FFFFFF',
-              },
-              '& .MuiInputBase-input': {
-                color: 'white',
-              },
-            }}
-            label="Username:"
-            name="userName"
-            value={user.userName}
-            onChange={handleTextFieldChange}
-          />
-        </li>
-        <br />
-        <li>
-          <TextField
-            sx={{
-              width: '100%',
-              '& .MuiInputLabel-root': {
-                color: '#FFFFFF',
-              },
-              '& .MuiInputBase-input': {
-                color: 'white',
-              },
-            }}
-            label="Age:"
-            name="age"
-            value={user.age}
-            onChange={handleTextFieldChange}
-          />
-        </li>
-        <br />
-        <li>
-          <TextField
-           sx={{
-            width: '100%',
-            '& .MuiInputLabel-root': {
-              color: '#FFFFFF',
-            },
-            '& .MuiInputBase-input': {
-              color: 'white',
-            },
-          }}
-          label="DOB:"
-          name="dob"
-          value={user.dob}
-          readOnly
-        />
-        </li>
-        <br />
-        <li>
-          <TextField
-            sx={{
-              width: '100%',
-              '& .MuiInputLabel-root': {
-                color: '#FFFFFF',
-              },
-              '& .MuiInputBase-input': {
-                color: 'white',
-              },
-            }}
-            label="Education:"
-            name="education"
-            value={user.education}
-            onChange={handleTextFieldChange}
-          />
-        </li>
-        <br />
-        <li>
-          <TextField
-            sx={{
-              width: '100%',  
-               '& .MuiInputLabel-root': {
-                color: '#FFFFFF',
-              },
-              '& .MuiInputBase-input': {
-                color: 'white',
-              },
-            }}
-            label="Email-ID:"
-            name="email"
-            value={user.email}
-            readOnly
-          />
-        </li>
-        <br />
-        <li>
-          <TextField
-            sx={{
-              width: '100%',
-              '& .MuiInputLabel-root': {
-                color: '#FFFFFF',
-              },
-              '& .MuiInputBase-input': {
-                color: 'white',
-              },
-            }}
-            label="Ph_No:"
-            name="phoneNumber"
-            value={user.phoneNumber}
-            onChange={handleTextFieldChange}
-          />
-        </li>
-        <br />
-      </ul>
+              <IconButton onClick={e=>{alert("Logging out");}}><Link to={"/"}><LogoutIcon fontSize="large" color="action" /></ Link>
+              </IconButton>
+              
+            
+          
 
-      <Button variant="contained" color="primary" onClick={updateUserProfile}>
-        Update Profile
-      </Button>
+      
+
+
+            <Grid container justifyContent="center" spacing={2} alignItems="center" >
+          <Grid item xs={12} md={6}>
+              <ProfilePaper className='Profile' elevation={3} style={{ backgroundColor: '#252839' }}>
+                  {/* <Grid container spacing={2} alignItems="center" justifyContent="center"> */}
+                      <Grid item>
+                          <ProfileAvatar alt="Profile Picture" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7txNZdQjTR4hNdkAOC_BWFEqFLo0jQfOuq1lusXcFaA&usqp=CAU&ec=48665699.png" />
+                      </Grid>
+                      <Grid item>
+                      
+                          <Typography variant="body1" gutterBottom>
+                          <i class="fa-solid fa-user fa-xl"></i>
+                                  <TextField
+                                  
+                                 label="Name:"
+                                  name="name"
+                                  value={user.name}
+                                  inputProps={{
+                                    style: {
+                                      color: 'white',
+                                    },
+                                  }}
+                                  onChange={handleTextFieldChange}
+                                      variant="standard" />
+                              
+                                  
+                            <br/><br/>
+                          </Typography>
+                          
+                          <Typography variant="subtitle1" gutterBottom>
+                          <i class="fa-solid fa-location-dot fa-xl"></i>
+                                  <TextField
+                                      variant='standard'
+                                      label="Place:"
+                                      name="place"
+                                      value={user.place}
+                                      inputProps={{
+                                        style: {
+                                          color: 'white',
+                                        },
+                                      }}
+                                      onChange={handleTextFieldChange} />
+                                
+                                  
+                                <br/><br/>
+                          </Typography>
+
+                          
+                          <Typography variant="body1" >
+
+                          <i class="fa-solid fa-hat-cowboy fa-xl"></i>
+                                <TextField
+                                    variant='standard'
+                                    label="Username:"
+                                    name="userName"
+                                    value={user.userName}
+                                    inputProps={{
+                                      style: {
+                                        color: 'white',
+                                      },
+                                    }}
+                                    onChange={handleTextFieldChange} />
+                              
+
+                              <br/><br/>
+                        </Typography>
+
+
+
+                        <Typography variant="body1">
+
+                        <i class="fa-solid fa-baby-carriage fa-xl"></i>
+                                <TextField
+                                    variant='standard'
+                                    label="DOB:"
+                                    name="dob"
+                                    value={user.dob}
+                                    inputProps={{
+                                      style: {
+                                        color: 'white',
+                                      },
+                                    }}
+                                    onChange={handleTextFieldChange} />
+                              
+
+                              <br/><br/>
+                        </Typography>
+
+
+
+
+
+                          <Typography variant="body1">
+                             <i class="fa-solid fa-rocket fa-xl"></i>
+                                  <TextField
+                                      variant='standard'
+                                       label="Age:"
+                                       name="age"
+                                       value={user.age}
+                                       inputProps={{
+                                        style: {
+                                          color: 'white',
+                                        },
+                                      }}
+                                       onChange={handleTextFieldChange} />
+                                
+                          
+                                <br/><br/>
+                          </Typography>
+                          <Typography variant="body1">
+                          <i class="fa-solid fa-book fa-xl"></i>
+                                  <TextField
+                                    variant='standard'
+                                  label="Education:"
+                                  name="education"
+                                  value={user.education}
+                                  inputProps={{
+                                    style: {
+                                      color: 'white',
+                                    },
+                                  }}
+                                  onChange={handleTextFieldChange} />
+                               
+                                  
+                               <br/><br/>
+                          </Typography>
+                          <Typography variant="body1">
+                          <i class="fa-solid fa-envelope fa-xl"></i>
+                                  <TextField
+                                    variant='standard'
+                                  label="Email-ID:"
+                                  name="email"
+                                  value={user.email}
+                                  inputProps={{
+                                    style: {
+                                      color: 'white',
+                                    },
+                                  }}
+                                  readOnly
+                                 />
+                                
+                                <br/><br/>
+                          </Typography>
+                          <Typography variant="body1">
+                          <i class="fa-solid fa-phone fa-xl"></i>
+                                  <TextField
+                                   variant='standard'
+                                  label="Ph_No:"
+                                  name="phoneNumber"
+                                  value={user.phoneNumber}
+                                  inputProps={{
+                                    style: {
+                                      color: 'white',
+                                    },
+                                  }}
+                                  onChange={handleTextFieldChange} /> 
+                               
+                                  
+
+                               <Grid item>
+                           
+                              <IconButton onClick={updateUserProfile}>
+                                  <Typography variant="srOnly">Update</Typography>
+                                  <EditIcon />
+                              </IconButton>
+                          
+                      </Grid>
+
+
+
+                              
+                          </Typography>
+                      </Grid>
+                      
+                  {/* </Grid> */}
+              </ProfilePaper>
+          </Grid>
+      </Grid>
+
+
+      
     </div>
   );
 };

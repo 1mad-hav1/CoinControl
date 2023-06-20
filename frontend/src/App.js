@@ -7,13 +7,17 @@ import AdminLogin from './Adminlogin';
 import Single from './Single';
 import Profilepage from "./Profilepage";
 import Dashboard from "./Dashboard";
+import Expense from './Expense';
+import Bar from './Bar';
+import About from './About';
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Bar/>} />
+          <Route path='/About' element={<About/>}/>
           <Route path="/Login" element={<Login />} />
           <Route path="/sign" element={<Sign />} />
           <Route path="/home" element={<Home />} />
@@ -21,7 +25,7 @@ function App() {
           <Route path="/single" element={<Single />} />
           <Route path='/profilepage' element={<Profilepage/>}/>
           <Route path='/Dashboard' element={<Dashboard/>}/>
-        
+          <Route path='/Expense' element={<Expense />}/>
         </Routes>
       </Router>
     </div>
